@@ -93,7 +93,7 @@ class Main
                             System.out.println("\nIngresó un número inválido.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nIngresó algo que no es un número.");
                     }
@@ -150,7 +150,7 @@ class Main
                             System.out.println("\nIngresó un número inválido.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nIngresó algo que no es un número.");
                     }
@@ -233,7 +233,7 @@ class Main
                                 System.out.println("\nIngresó un número inválido.");
                             }
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nIngresó algo que no es un número.");
                         }
@@ -266,7 +266,7 @@ class Main
                                 System.out.println("\nIngresó un número inválido.");
                             }
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nIngresó algo que no es un número.");
                         }
@@ -285,7 +285,7 @@ class Main
                         sc.nextLine();
                         producto = new Producto(id);
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nHa ingresado datos incorrectos.");
                     }
@@ -374,7 +374,7 @@ class Main
                                         System.out.println("\nIngresó un número inválido.");
                                     }
                                 }
-                                catch (NumberFormatException e)
+                                catch (Exception e)
                                 {
                                     System.out.println("\nIngresó algo que no es un número.");
                                 }
@@ -408,7 +408,7 @@ class Main
                                         System.out.println("\nIngresó un número inválido.");
                                     }
                                 }
-                                catch (NumberFormatException e)
+                                catch (Exception e)
                                 {
                                     System.out.println("\nIngresó algo que no es un número.");
                                 }
@@ -467,7 +467,7 @@ class Main
                                 }
                             }
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nIngresó algo que no es un número.");
                         }
@@ -548,7 +548,7 @@ class Main
                         sc.nextLine();
                         empleado2 = new Empleado(id);
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nHa ingresado datos incorrectos.");
                     }
@@ -644,7 +644,7 @@ class Main
                             sc.nextLine();
                             empleado2 = new Empleado(id);
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nHa ingresado datos incorrectos.");
                         }
@@ -733,7 +733,7 @@ class Main
                         sc.nextLine();
                         empresa = new Cliente_Proveedor(id);
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nHa ingresado datos incorrectos.");
                     }
@@ -838,7 +838,7 @@ class Main
                                 System.out.println("\nIngresó un identificador que no existe o no es un proveedor.");
                             }
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nIngresó algo que no es un número.");
                         }
@@ -885,7 +885,7 @@ class Main
                                             System.out.println("\nCantidades incorrectas.");
                                         }
                                     }
-                                    catch (NumberFormatException e)
+                                    catch (Exception e)
                                     {
                                         System.out.println("\nIngresó datos incorrectos");
                                     }
@@ -977,7 +977,7 @@ class Main
                                 System.out.println("\nIngresó un identificador que no existe o no es un cliente.");
                             }
                         }
-                        catch (NumberFormatException e)
+                        catch (Exception e)
                         {
                             System.out.println("\nIngresó algo que no es un número.");
                         }
@@ -1024,7 +1024,7 @@ class Main
                                             System.out.println("\nCantidades incorrectas.");
                                         }
                                     }
-                                    catch (NumberFormatException e)
+                                    catch (Exception e)
                                     {
                                         System.out.println("\nIngresó datos incorrectos");
                                     }
@@ -1132,7 +1132,7 @@ class Main
                                             System.out.println("\nCantidades incorrectas.");
                                         }
                                     }
-                                    catch (NumberFormatException e)
+                                    catch (Exception e)
                                     {
                                         System.out.println("\nIngresó datos incorrectos.");
                                     }
@@ -1240,7 +1240,7 @@ class Main
                                             System.out.println("\nCantidades incorrectas.");
                                         }
                                     }
-                                    catch (NumberFormatException e)
+                                    catch (Exception e)
                                     {
                                         System.out.println("\nIngresó datos incorrectos.");
                                     }
@@ -1335,7 +1335,7 @@ class Main
                             System.out.println("\nEl producto no existe o está descontinuado.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nNo ha ingresado un número.");
                     }
@@ -1357,7 +1357,7 @@ class Main
                             System.out.println("\nLa categoría no existe.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nNo ha ingresado un número.");
                     }
@@ -1379,7 +1379,7 @@ class Main
                             System.out.println("\nLa ubicación no existe.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nNo ha ingresado un número.");
                     }
@@ -1401,7 +1401,7 @@ class Main
                             System.out.println("\nEl empleado no existe o fue despedido.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nNo ha ingresado un número.");
                     }
@@ -1423,7 +1423,7 @@ class Main
                             System.out.println("\nEl empleado no existe o fue despedido.");
                         }
                     }
-                    catch (NumberFormatException e)
+                    catch (Exception e)
                     {
                         System.out.println("\nNo ha ingresado un número.");
                     }
