@@ -138,4 +138,21 @@ class Cliente_Proveedor
         String query = "UPDATE CLIENTES_PROVEEDORES SET NOMBRE = '" + this.nombre + "', TIPO = '" + this.tipo + "' WHERE ID_C_P = " + this.id;
         db.executeUpdate(query);
     }
+
+    /**
+     * @return Devuelve la información detallada del empleado.
+    */
+
+    public String Informacion()
+    {
+        DatabaseConnector db = new DatabaseConnector();
+        String sql = "SELECT * FROM CLIENTES_PROVEEDORES WHERE ID_C_P = " + this.id;
+        List<Map<String, Object>> empresas = db.executeQuery(sql);
+        Map<String, Object> fila = empresas.get(0);
+        Integer id_empresa = (Integer) fila.get("ID_C_P");
+        String nombre_empresa = (String) fila.get("NOMBRE");
+        String tipo_empresa = (String) fila.get("TIPO");
+        String texto = "Id: " + id_empresa + "\nNombre: " + nombre_empresa + "\nTipo: " + tipo_empresa;
+        return texto;
+    }
 }

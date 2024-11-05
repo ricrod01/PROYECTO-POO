@@ -303,4 +303,29 @@ class Producto
         ", ID_CATEGORIA = " + this.id_categoria+ " WHERE ID_PRODUCTO = " + this.id;
         db.executeUpdate(query);
     }
+
+    /**
+     * @return Devuelve la información detallada del producto.
+    */
+
+    public String Informacion()
+    {
+        DatabaseConnector db = new DatabaseConnector();
+        String sql = "SELECT * FROM PRODUCTOS WHERE DESCONTINUADO = false AND ID_PRODUCTO = " + this.id;
+        List<Map<String, Object>> productos = db.executeQuery(sql);
+        Map<String, Object> fila = productos.get(0);
+        Integer id_producto = (Integer) fila.get("ID_PRODUCTO");
+        String nombre_producto = (String) fila.get("NOMBRE");
+        String tipo_producto = (String) fila.get("TIPO");
+        Float cantidad = (Float) fila.get("CANTIDAD");
+        String dimensiones = (String) fila.get("DIMENSIONES");
+        Integer id_categoria = (Integer) fila.get("ID_CATEGORIA");
+        Integer id_ubicacion = (Integer) fila.get("ID_UBICACION");
+        Categoria categoria = new Categoria(id_categoria);
+        Ubicacion ubicacion = new Ubicacion(id_ubicacion);
+        String texto = "Id: " + id_producto + "\nNombre: " + nombre_producto + "\nTipo: " + tipo_producto + 
+        "\nCantidad: " + cantidad + "\nDimensiones: " + dimensiones + "\nCategoría: " + categoria.toString() +
+        "Ubicacion: " + ubicacion.toString();
+        return texto;
+    }
 }

@@ -141,16 +141,12 @@ class Empleado
     }
 
     /**
+     * @param contrasenia2 Contraseña ingresada, la cual se comparará con la registrada.
      * @return Devuelve un booleano que informa si la contraseña ingresada es igual a la base de datos o no.
     */
 
-    public boolean CorroborarContrasenia()
+    public boolean CorroborarContrasenia(String contrasenia2)
     {
-        DatabaseConnector db = new DatabaseConnector();
-        String sql = "SELECT * FROM EMPLEADOS WHERE DESPEDIDO = false AND ID_EMPLEADO = " + this.id;
-        List<Map<String, Object>> empleados = db.executeQuery(sql);
-        Map<String, Object> fila = empleados.get(0);
-        String contrasenia2 = (String) fila.get("CONTRASENIA");
         return this.contrasenia.equals(contrasenia2);
     }
 
@@ -187,5 +183,22 @@ class Empleado
         DatabaseConnector db = new DatabaseConnector();
         String query = "UPDATE EMPLEADOS SET NOMBRE = '" + this.nombre + "', TIPO = '" + this.tipo + "', CONTRASENIA = '" + this.contrasenia + "', DESPEDIDO = " + this.despedido + " WHERE ID_EMPLEADO = " + this.id;
         db.executeUpdate(query);
+    }
+
+    /**
+     * @return Devuelve la información detallada del empleado.
+    */
+
+    public String Informacion()
+    {
+        DatabaseConnector db = new DatabaseConnector();
+        String sql = "SELECT * FROM EMPLEADOS WHERE DESPEDIDO = false AND ID_EMPLEADO = " + this.id;
+        List<Map<String, Object>> empleados = db.executeQuery(sql);
+        Map<String, Object> fila = empleados.get(0);
+        Integer id_empleado = (Integer) fila.get("ID_EMPLEADO");
+        String nombre_empleado = (String) fila.get("NOMBRE");
+        String tipo_empleado = (String) fila.get("TIPO");
+        String texto = "Id: " + id_empleado + "\nNombre: " + nombre_empleado + "\nTipo: " + tipo_empleado;
+        return texto;
     }
 }
