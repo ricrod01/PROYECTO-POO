@@ -11,21 +11,21 @@ Debe tener instalado MySQL y MySQL Workbench, además descargar el conector mysq
 Código para la terminal:
 Windows
 
-'''bash
+```bash
 javac -cp ".;mysql-connector-j-9.0.0.jar" src\*.java
-'''
+```
 
-'''bash
+```bash
 java -cp ".;mysql-connector-j-9.0.0.jar;src" Main
-'''
+```
 
 Linux y Mac
-'''bash
+```bash
 javac -cp ".:mysql-connector-j-9.0.0.jar" src\*.java
-'''
+```
 
-'''bash
+```bash
 java -cp ".:mysql-connector-j-9.0.0.jar:src" Main
-'''
+```
 
 
