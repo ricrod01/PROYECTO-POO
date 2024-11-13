@@ -3,7 +3,7 @@
  * @version 2
  * Clase Main del proyecto. Aquí se realiza la interfaz con la que interactuará el usuario.
  * fecha_creación = 10/10/2024
- * fecha_modificación = 4/11/2024
+ * fecha_modificación = 13/11/2024
  */
 
 import java.util.ArrayList;
@@ -23,16 +23,59 @@ class Main
         boolean flag_comprador = false;
         boolean flag_bodeguero = false;
         DatabaseConnector db = new DatabaseConnector();
-        Empleado empleado = null;
+        Empleado empleado = new Empleado(0);
 
         while(flag_empleado)
         {
-            //Parte de validación del empleado, autenticar un una contraseña y pasar al siguiente en caso de que sea correcta
-            flag_empleado = false;
-            empleado = new Empleado(1);
-            flag = true;
+            System.out.println("\n¿Desea ingresar al sistema?");
+            System.out.println("1) Si");
+            System.out.println("Cualquier otra tecla) No");
+            String ingreso = sc.nextLine();
+            if (ingreso.equals("1"))
+            {
+                try
+                {
+                    System.out.println("\nIngrese su número de empleado.");
+                    String id_empleado_str = sc.nextLine();
+                    int id_empleado = Integer.parseInt(id_empleado_str);
+                    empleado = new Empleado(id_empleado);
+                    if (empleado.ExisteId())
+                    {
+                        System.out.println("\nIngrese su contraseña.");
+                        String contrasenia_entrada = sc.nextLine();
+                        if(empleado.CorroborarContrasenia(contrasenia_entrada))
+                        {
+                            flag = true;
+                            switch (empleado.GetTipo())
+                            {
+                                case "Administrador" -> flag_administrador = true;
+                                case "Vendedor" -> flag_vendedor = true;
+                                case "Comprador" -> flag_comprador = true;
+                                case "Bodeguero" -> flag_bodeguero = true;
+                            }
+                            flag_empleado = false;
+                        }
+                        else
+                        {
+                            System.out.println("\nLa contraseña es incorrecta.");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("Este número de empleado no está registrado.");
+                    }
+                }
+                catch (Exception e) 
+                {
+                    System.out.println("\nHa ingresado algo que no es un número.");
+                    flag_empleado = true;
+                }
+            }
+            else
+            {
+                flag_empleado = false;
+            }
         }
-
 
         while (flag) 
         {
@@ -47,7 +90,7 @@ class Main
             System.out.println("8) Salir.");
             String menu = sc.nextLine();
 
-            if(menu.equals("1"))
+            if(menu.equals("1") && flag_administrador)
             {
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1) Agregar una ubicación.");
@@ -104,7 +147,7 @@ class Main
                 }
             }
 
-            else if(menu.equals("2"))
+            else if(menu.equals("2") && flag_administrador)
             {
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1) Agregar una categoría.");
@@ -161,7 +204,7 @@ class Main
                 }
             }
 
-            else if(menu.equals("3"))
+            else if(menu.equals("3") && flag_administrador)
             {
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1) Crear un producto.");
@@ -479,7 +522,7 @@ class Main
                 }
             }
 
-            else if(menu.equals("4"))
+            else if(menu.equals("4") && flag_administrador)
             {
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1) Agregar un empleado.");
@@ -686,7 +729,7 @@ class Main
                 }
             }
 
-            else if (menu.equals("5"))
+            else if (menu.equals("5") && flag_administrador)
             {
                 System.out.println("\n¿Qué desea hacer?");
                 System.out.println("1) Agregar un cliente/proveedor.");
@@ -795,7 +838,7 @@ class Main
                 }
             }
 
-            else if(menu.equals("6"))
+            else if(menu.equals("6") && !flag_administrador)
             {
                 System.out.println("\n¿Qué tipo de transacción desea hacer?");
                 System.out.println("1) Compra.");
@@ -808,7 +851,7 @@ class Main
                 ArrayList<Producto> productos = new ArrayList<>();
                 ArrayList<Float> cantidades = new ArrayList<>();
 
-                if (opcion.equals("1"))
+                if (opcion.equals("1") && flag_comprador)
                 {
                     Cliente_Proveedor proveedor = null;
                     int id_c_p = 0;
@@ -947,7 +990,7 @@ class Main
                     }
                 }
 
-                else if (opcion.equals("2"))
+                else if (opcion.equals("2") && flag_vendedor)
                 {
                     Cliente_Proveedor cliente = null;
                     int id_c_p = 0;
@@ -1086,7 +1129,7 @@ class Main
                     }
                 }
 
-                else if (opcion.equals("3"))
+                else if (opcion.equals("3") && flag_bodeguero)
                 {
                     Cliente_Proveedor empresa = null;
                     int id_c_p = 1;
@@ -1194,7 +1237,7 @@ class Main
                     }
                 }
 
-                else if (opcion.equals("4"))
+                else if (opcion.equals("4") && flag_bodeguero)
                 {
                     Cliente_Proveedor empresa = null;
                     int id_c_p = 1;
@@ -1304,7 +1347,7 @@ class Main
                 
                 else
                 {
-                    System.out.println("Ha ingresado una opción incorrecta.");
+                    System.out.println("Ha ingresado una opción incorrecta o no tiene habilitada la opción por el tipo de puesto que posee.");
                 }
 
             }
@@ -1384,7 +1427,7 @@ class Main
                         System.out.println("\nNo ha ingresado un número.");
                     }
                 }
-                else if(opcion.equals("4"))
+                else if(opcion.equals("4") && flag_administrador)
                 {
                     try 
                     {
@@ -1406,11 +1449,11 @@ class Main
                         System.out.println("\nNo ha ingresado un número.");
                     }
                 }
-                else if(opcion.equals("5"))
+                else if(opcion.equals("5") && !flag_bodeguero)
                 {
                     try 
                     {
-                        System.out.println("\nIngrese el identificador del empleado.");
+                        System.out.println("\nIngrese el identificador de la empresa.");
                         int id = sc.nextInt();
                         sc.nextLine();
                         Cliente_Proveedor empresa = new Cliente_Proveedor(id);
@@ -1420,7 +1463,7 @@ class Main
                         }
                         else
                         {
-                            System.out.println("\nEl empleado no existe o fue despedido.");
+                            System.out.println("\nLa empresa no existe.");
                         }
                     }
                     catch (Exception e)
@@ -1430,7 +1473,7 @@ class Main
                 }
                 else
                 {
-                    System.out.println("\nHa ingresado una opción incorrecta.");
+                    System.out.println("\nHa ingresado una opción incorrecta o no tiene habilitada la opción por el tipo de puesto que posee.");
                 }
             }
 
@@ -1441,7 +1484,7 @@ class Main
             
             else
             {
-                System.out.println("Ha ingresado una opción incorrecta.");
+                System.out.println("Ha ingresado una opción incorrecta o no tiene habilitada la opción por el tipo de puesto que posee.");
             }
         }
     }
